@@ -13,6 +13,11 @@ class App extends Component {
       filterText: '',
       selectedBuilding: 0,
       data: []
+      /*
+      cartItems: [], So when we want to add items to the cart, you can just do cartItems.Push(item)
+      And when you want to add or delte, you can have 2 more arrays of equal length, one to add items, and one
+      to delete items, and the side cart can have 3 columns, and 
+    */
     };
   }
 
@@ -36,6 +41,7 @@ class App extends Component {
 removeBuilding(removeThis) {
 
 delete this.props.data[removeThis-1]
+
     
 }
 addBuilding(formSubmission){
@@ -47,37 +53,51 @@ addBuilding(formSubmission){
   let latitude =  formSubmission.target[3].value;
   let longitude =  formSubmission.target[4].value
   // Checks to make sure a code was entered in the field
-  if (code !== undefined || code !== '' || code !==null)        
-  // If it has been entered, then add it
-nodeObj.code = code;
+  if (code !== undefined || code !== '' || code !==null)
+  {  // If it has been entered, then add it
+    nodeObj.code = code;
+  } else{return;}
+  console.log(nodeObj.code);
 // Checks to make sure a name was entered in the field
 if( name !== undefined && name !== '' && name !==null)
- // If it has been entered, then add it
-nodeObj.name = name;
-   // Checks to make sure a ddress was entered in the field
-   if (address !== undefined && address !== '' && address !==null)        
+{
    // If it has been entered, then add it
- nodeObj.address = address;
-  // Checks to make sure a latitude was entered in the field
-  if (latitude!== undefined &&latitude !== '' && latitude !==null)        
- 
-  // If it has been entered, then add it
-nodeObj.latitude = latitude;
- // Checks to make sure a longitude was entered in the field
- if (longitude!== undefined && longitude!== '' && longitude !==null)        
+nodeObj.name = name;
 
+}else {return;}
+console.log(nodeObj.name );
+
+   // Checks to make sure a ddress was entered in the field
+   if (address !== undefined && address !== '' && address !==null)
+   {
  // If it has been entered, then add it
-nodeObj.longitude = longitude;
+ nodeObj.address = address;
 
-var myarr =[nodeObj];
+   }else{return;} 
+   console.log(nodeObj.address  );       
+   nodeObj.coordinates = {};   
+  // Checks to make sure a latitude was entered in the field
+  if (latitude!== undefined &&latitude !== '' && latitude !==null)
+  {
+  // If it has been entered, then add it
+  nodeObj.coordinates.latitude = latitude;
+  }else{return;}
+     
+ console.log(  nodeObj.coordinates.latitude );
+     
 
+ // Checks to make sure a longitude was entered in the field
+ if (longitude!== undefined && longitude!== '' && longitude !==null)
+ {
+ // If it has been entered, then add it
+ nodeObj.coordinates.longitude = longitude;
+ }else{return;}        
+console.log(nodeObj.coordinates.longitude);
 
 //this.props.data.push(myarr);
 this.setState(()=>{
-this.state.data.concat(myarr)
+ this.props.data.push(nodeObj)
 });
-console.log('here');
-
 
 }// end of add function
 

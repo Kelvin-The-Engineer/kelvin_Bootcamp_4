@@ -4,7 +4,8 @@ export default class RemoveBuilding extends Component {
 
   removeBuilding(index){
 
-		this.props.removeBuilding(index);
+    this.props.removeBuilding(index);
+    
 	}
   render() {
     
